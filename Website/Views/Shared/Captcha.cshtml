@@ -5,6 +5,7 @@
     {
         background-color:transparent;
         vertical-align:middle;
+        padding: 0px;
     }
 </style>
 
@@ -17,7 +18,7 @@
             <img src='@Url.Action("Image", "Captcha", new { id = Model.UniqueId })' alt='CAPTCHA' width='@Model.Width' height='@Model.Height' />
         </td>
         <td>
-            @Html.TextBox("CaptchaText")
+            <input type="text" id="CaptchaText" name="CaptchaText" />
         </td>
     </tr>
 </table>

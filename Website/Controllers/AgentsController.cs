@@ -62,6 +62,7 @@ namespace Website.Controllers
 			}
 
 			viewModel.CaptchaImage = CaptchaController.GenerateCaptchaImage();
+			viewModel.CaptchaText = "";
 			return View(viewModel);
 		}
 
