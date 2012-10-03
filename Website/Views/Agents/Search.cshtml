@@ -1,0 +1,90 @@
+﻿@model Website.Models.AgentsSearchViewModel
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('.agent-name-link').click(function () {
+                $('.agent-details-row').hide();
+                $(this).parents('tr:eq(0)').next().show();
+                fixIEBug();
+            });
+        });
+
+        function fixIEBug() {
+            var $table = $('#agentsSearchResultTable');
+            $table.hide();
+            $table.show();
+        }
+    </script>
+}
+
+@section styles
+{
+    <style type="text/css">
+
+        .agent-name-link
+        {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+    </style>
+}
+
+<h1>Реестр агентов</h1>
+
+<p>Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(m => m.SearchText, new { style = "width: 200px" })
+    <input type="submit" value="Найти" />
+    
+    <br />
+    <br />
+    
+    if (ViewBag.Error != null)
+    {
+        <div style="color: #f00;">
+            @ViewBag.Error
+        </div>
+        <br />
+    }
+    
+    
+    @Html.Partial("Captcha", Model.CaptchaImage)
+}
+
+@if (Model.Agents != null)
+{
+    <br />
+    <div>
+        <table id="agentsSearchResultTable">
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Компания</th>
+                    <th>Номер сертификата</th>
+                </tr>
+            </thead>
+            @foreach (Website.Models.Agent agent in Model.Agents)
+            {
+                <tr>
+                    <td><a class="agent-name-link">@agent.Name</a></td>
+                    <td>@agent.FirmName</td>
+                    <td>@agent.CertificateNumber</td>
+                </tr>
+                <tr class="agent-details-row" style="display:none">
+                    <td colspan="3">
+                        <textarea readonly="readonly" style="width:100%">@agent.Id</textarea>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
+
+
+

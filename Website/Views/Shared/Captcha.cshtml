@@ -1,0 +1,25 @@
+﻿@model Website.Models.CaptchaImage
+
+<style type="text/css">
+    #captcha-table td
+    {
+        background-color:transparent;
+        vertical-align:middle;
+    }
+</style>
+
+<input type="hidden" id="CaptchaId" name="CaptchaId" value="@Model.UniqueId" />
+
+<label>Чтобы доказать, что вы не робот, пожалуйста введите текст с изображения</label>
+<table id="captcha-table" style="border-color:black; border-width:medium">
+    <tr>
+        <td style="width:190px">
+            <img src='@Url.Action("Image", "Captcha", new { id = Model.UniqueId })' alt='CAPTCHA' width='@Model.Width' height='@Model.Height' />
+        </td>
+        <td>
+            @Html.TextBox("CaptchaText")
+        </td>
+    </tr>
+</table>
+
+
