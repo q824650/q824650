@@ -24,6 +24,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Web;
 using System.Text;
+using System.Web.Caching;
 
 namespace Website.Models
 {
@@ -117,16 +118,52 @@ namespace Website.Models
 		#region Static
 
 		/// <summary>
-		/// Gets the cached captcha.
+		/// Generates new captcha image and caches it
 		/// </summary>
-		/// <param name="guid">The GUID.</param>
-		/// <returns></returns>
-		public static CaptchaImage GetCachedCaptcha(string guid)
+		/// <returns>CaptchaImage</returns>
+		public static CaptchaImage GenerateCaptchaImage()
 		{
-			if (String.IsNullOrEmpty(guid))
-				return null;
+			CaptchaImage captchaImage = new CaptchaImage();
 
-			return (CaptchaImage)HttpRuntime.Cache.Get(guid);
+			HttpRuntime.Cache.Add(
+				captchaImage.UniqueId,
+				captchaImage,
+				null,
+				DateTime.Now.AddSeconds(CaptchaImage.CacheTimeOut),
+				Cache.NoSlidingExpiration,
+				CacheItemPriority.NotRemovable,
+				null);
+
+			return captchaImage;
+		}
+
+		/// <summary>
+		/// Gets the cached captcha and then removes it from cache
+		/// </summary>
+		/// <param name="id">Captcha Id</param>
+		/// <returns>CaptchaImage</returns>
+		public static CaptchaImage GetAndRemoveCachedCaptcha(string id)
+		{
+			CaptchaImage image = GetCachedCaptcha(id);
+			if (image != null)
+			{
+				HttpRuntime.Cache.Remove(id);
+			}
+			return image;
+		}
+
+		/// <summary>
+		/// Gets the cached captcha
+		/// </summary>
+		/// <param name="id">Captcha Id</param>
+		/// <returns>CaptchaImage</returns>
+		public static CaptchaImage GetCachedCaptcha(string id)
+		{
+			if (!String.IsNullOrEmpty(id))
+			{
+				return (CaptchaImage)HttpRuntime.Cache.Get(id);
+			}
+			return null;			
 		}
 
 		/// <summary>

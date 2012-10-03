@@ -17,33 +17,17 @@ namespace Website.Controllers
 		public FileResult Image(string id)
         {
 			CaptchaImage captchaImage = CaptchaImage.GetCachedCaptcha(id);
-
-			MemoryStream stream = new MemoryStream();
-			if (captchaImage != null)
+			using (MemoryStream stream = new MemoryStream())
 			{
-				using (Bitmap bitmap = captchaImage.RenderImage())
+				if (captchaImage != null)
 				{
-					bitmap.Save(stream, ImageFormat.Png);
+					using (Bitmap bitmap = captchaImage.RenderImage())
+					{
+						bitmap.Save(stream, ImageFormat.Png);
+					}
 				}
+				return File(stream.ToArray(), "image/png");
 			}
-
-			return File(stream.ToArray(), "image/png");
         }
-
-		public static CaptchaImage GenerateCaptchaImage()
-		{
-			CaptchaImage captchaImage = new CaptchaImage();
-
-			HttpRuntime.Cache.Add(
-				captchaImage.UniqueId,
-				captchaImage,
-				null,
-				DateTime.Now.AddSeconds(CaptchaImage.CacheTimeOut),
-				Cache.NoSlidingExpiration,
-				CacheItemPriority.NotRemovable,
-				null);
-
-			return captchaImage;
-		}
     }
 }
