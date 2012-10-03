@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WindowsAzure1" generation="1" functional="0" release="0" Id="d2abc9e0-917e-4cfc-b3b9-4590751d9e3d" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WindowsAzure1" generation="1" functional="0" release="0" Id="bffe7ed4-a2ed-4820-9238-245bca8dfc69" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="WindowsAzure1Group" generation="1" functional="0" release="0">
       <componentports>
@@ -42,7 +42,7 @@
       </maps>
       <components>
         <groupHascomponents>
-          <role name="Website" generation="1" functional="0" release="0" software="C:\Users\Mikhail_Semichev\Desktop\Azure\WindowsAzure1\csx\Debug\roles\Website" entryPoint="base\x86\WaHostBootstrapper.exe" parameters="base\x86\WaIISHost.exe " memIndex="1792" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
+          <role name="Website" generation="1" functional="0" release="0" software="D:\AgentsRegistry\csx\Debug\roles\Website" entryPoint="base\x86\WaHostBootstrapper.exe" parameters="base\x86\WaIISHost.exe " memIndex="1792" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
             <componentports>
               <inPort name="Endpoint1" protocol="http" portRanges="80" />
             </componentports>
@@ -68,9 +68,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="4990d8b9-ddbf-4209-b57b-089d14988e3a" ref="Microsoft.RedDog.Contract\ServiceContract\WindowsAzure1Contract@ServiceDefinition.build">
+    <implementation Id="34940db4-b9a3-4afe-ac50-cc13dbd6b9e2" ref="Microsoft.RedDog.Contract\ServiceContract\WindowsAzure1Contract@ServiceDefinition.build">
       <interfacereferences>
-        <interfaceReference Id="cad13fad-cb3c-4927-9ffc-ad107b4884d2" ref="Microsoft.RedDog.Contract\Interface\Website:Endpoint1@ServiceDefinition.build">
+        <interfaceReference Id="8adefacd-5b69-4ac1-9fe3-cd8587f5f3e7" ref="Microsoft.RedDog.Contract\Interface\Website:Endpoint1@ServiceDefinition.build">
           <inPort>
             <inPortMoniker name="/WindowsAzure1/WindowsAzure1Group/Website:Endpoint1" />
           </inPort>

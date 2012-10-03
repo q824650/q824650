@@ -1,1 +1,5 @@
 /Website/bin/*.dll
+/bin
+/obj
+/Website/bin
+/Website/obj
