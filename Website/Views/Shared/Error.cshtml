@@ -1,4 +1,5 @@
-﻿@{
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
     Layout = null;
 }
 
@@ -6,11 +7,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <title>Ошибка</title>
 </head>
 <body>
-    <h2>
-        Sorry, an error occurred while processing your request.
-    </h2>
+    <h2>Произошла ошибка</h2>
+    <textarea style="width:80%;height:500px">
+Controller: '@Model.ControllerName' @Environment.NewLine
+Action: '@Model.ActionName' @Environment.NewLine
+Exception: @Model.Exception
+    </textarea>
 </body>
 </html>

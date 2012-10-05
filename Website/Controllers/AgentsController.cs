@@ -13,17 +13,20 @@ namespace Website.Controllers
         public ActionResult Search()
         {
 			AgentsSearchViewModel viewModel = new AgentsSearchViewModel();
-			viewModel.CaptchaImage = CaptchaController.GenerateCaptchaImage();
+			viewModel.CaptchaImage = CaptchaImage.GenerateCaptchaImage();
 			return View(viewModel);
         }
 
 		[HttpPost]
 		public ActionResult Search(AgentsSearchViewModel viewModel)
 		{
-			CaptchaImage image = CaptchaImage.GetCachedCaptcha(viewModel.CaptchaId);
+			CaptchaImage image = CaptchaImage.GetAndRemoveCachedCaptcha(viewModel.CaptchaId);
+
+			// If image exists in cache (wasn't removed during timeout)
 			if (image == null)
 			{
-			    return RedirectToAction("Search");
+				// Redirect to search again
+				return RedirectToAction("Search");
 			}
 
 			if (string.Equals(image.Text, viewModel.CaptchaText, StringComparison.OrdinalIgnoreCase))
@@ -36,7 +39,7 @@ namespace Website.Controllers
 					// Data access
 					List<Agent> agents = GetAgents(searchText);
 
-					if (agents.Count > 0 && agents.Count < 10)
+					if (agents.Count > 0 && agents.Count < Configuration.MaxAgentsSearchResultSetLength)
 					{
 						viewModel.Agents = agents;
 					}
@@ -61,7 +64,7 @@ namespace Website.Controllers
 				ViewBag.Error = "Текст с изображения введен неверно";
 			}
 
-			viewModel.CaptchaImage = CaptchaController.GenerateCaptchaImage();
+			viewModel.CaptchaImage = CaptchaImage.GenerateCaptchaImage();
 			return View(viewModel);
 		}
 
