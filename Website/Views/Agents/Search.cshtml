@@ -3,20 +3,15 @@
 @section scripts
 {
     <script type="text/javascript">
+
         $(function () {
-            $('.agent-name-link').click(function () {
+            $('.agent-name-link').click(function (e) {
+                e.preventDefault();
                 $('.agent-details-row').hide();
                 $(this).parents('tr:eq(0)').next().show();
-                fixIEBug();
-                return false;
             });
         });
-
-        function fixIEBug() {
-            var $table = $('#agentsSearchResultTable');
-            $table.hide();
-            $table.show();
-        }
+        
     </script>
 }
 
