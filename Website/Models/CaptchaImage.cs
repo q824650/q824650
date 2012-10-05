@@ -282,7 +282,7 @@ namespace Website.Models
 			LineNoise = LineNoiseLevel.Low;
 			TextLength = 5;
 			TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789";
-			CacheTimeOut = 300D;
+			CacheTimeOut = 600D;
 		}
 
 		/// <summary>

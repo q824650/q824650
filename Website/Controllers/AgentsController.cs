@@ -21,7 +21,7 @@ namespace Website.Controllers
 		public ActionResult Search(AgentsSearchViewModel viewModel)
 		{
 			CaptchaImage image = CaptchaImage.GetAndRemoveCachedCaptcha(viewModel.CaptchaId);
-			
+
 			// If image exists in cache (wasn't removed during timeout)
 			if (image == null)
 			{
@@ -39,7 +39,7 @@ namespace Website.Controllers
 					// Data access
 					List<Agent> agents = GetAgents(searchText);
 
-					if (agents.Count > 0 && agents.Count < 10)
+					if (agents.Count > 0 && agents.Count < Configuration.MaxAgentsSearchResultSetLength)
 					{
 						viewModel.Agents = agents;
 					}
