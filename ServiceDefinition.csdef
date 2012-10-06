@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="WindowsAzure1" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
-  <WebRole name="Website" vmsize="Small">
+<ServiceDefinition name="AgentRegisterOpenPart" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
+  <WebRole name="AgentRegisterOpenPart.Web" vmsize="Small">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -13,8 +13,6 @@
     </Endpoints>
     <Imports>
       <Import moduleName="Diagnostics" />
-      <Import moduleName="RemoteAccess" />
-      <Import moduleName="RemoteForwarder" />
     </Imports>
   </WebRole>
 </ServiceDefinition>

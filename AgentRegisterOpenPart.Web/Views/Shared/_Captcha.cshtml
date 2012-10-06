@@ -1,0 +1,26 @@
+﻿@model AgentRegisterOpenPart.Web.Models.CaptchaImage
+
+<style type="text/css">
+    #captcha-table td
+    {
+        background-color:transparent;
+        vertical-align:middle;
+        padding: 0px;
+    }
+</style>
+
+<input type="hidden" id="CaptchaId" name="CaptchaId" value="@Model.UniqueId" />
+
+<p style="text-align:justify">Чтобы доказать, что вы не робот, пожалуйста введите текст с изображения</p>
+<table id="captcha-table" style="border-color:black; border-width:medium">
+    <tr>
+        <td style="width:190px">
+            <img src='@Url.Action("Image", "Captcha", new { id = Model.UniqueId })' alt='CAPTCHA' width='@Model.Width' height='@Model.Height' />
+        </td>
+        <td>
+            <input type="text" id="CaptchaText" name="CaptchaText" />
+        </td>
+    </tr>
+</table>
+
+
