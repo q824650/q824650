@@ -40,6 +40,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
@@ -147,8 +159,11 @@
     <Compile Include="Models\AgentContext.cs" />
     <Compile Include="Models\AgentsSearchViewModel.cs" />
     <Compile Include="Models\CaptchaImage.cs" />
+    <Compile Include="Models\LogContext.cs" />
+    <Compile Include="Models\LogItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ConfigurationHelper.cs" />
+    <Compile Include="Utils\ExceptionTextFormatter.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>

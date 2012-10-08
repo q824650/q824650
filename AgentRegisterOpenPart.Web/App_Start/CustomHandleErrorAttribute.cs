@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AgentRegisterOpenPart.Web.Models;
 
 namespace AgentRegisterOpenPart.Web
 {
@@ -10,7 +11,8 @@ namespace AgentRegisterOpenPart.Web
 	{
 		public override void OnException(ExceptionContext filterContext)
 		{
-			Exception exception = filterContext.Exception;
+			// Log exception
+			LogContext.LogException(filterContext.Exception, "AgentRegisterOpenPart", string.Empty);
 			base.OnException(filterContext);
 		}
 	}

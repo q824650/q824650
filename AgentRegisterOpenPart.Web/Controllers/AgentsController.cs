@@ -38,23 +38,26 @@ namespace AgentRegisterOpenPart.Web.Controllers
 					searchText = searchText.Trim();
 
 					// Data access
-					List<Agent> agents = GetAgents(searchText);
-					viewModel.Agents = agents;
+					viewModel.Agents = AgentContext.GetAgents(searchText);
 
-					//if (agents.Count > 0 && agents.Count < ConfigurationHelper.MaxAgentsSearchResultSetLength)
-					//{
-					//	viewModel.Agents = agents;
-					//}
-					//else if (agents.Count == 0)
-					//{
-					//	ViewBag.Error = "По вашему запросу не найдено ни одно совпадение";
-					//}
-					//else
-					//{
-					//	ViewBag.Error = string.Format(
-					//		"По вашему запросу найдено более {0} записей. Уточните свой запрос",
-					//		agents.Count);
-					//}
+					if (viewModel.Agents == null)
+					{
+						ViewBag.Error = "Поиск может быть выполнен по ФИО или номеру сертификата. Пожалуйста уточните запрос.";
+					}
+					else if (viewModel.Agents.Count == 0)
+					{
+						ViewBag.Error = "По вашему запросу не найдено ни одно совпадение";
+					}
+					else if (viewModel.Agents.Count > ConfigurationHelper.MaxAgentsSearchResultSetLength)
+					{
+						ViewBag.Error = string.Format(
+							"По вашему запросу найдено более {0} записей. Пожалуйста уточните свой запрос",
+							ConfigurationHelper.MaxAgentsSearchResultSetLength);
+
+						viewModel.Agents = viewModel.Agents
+							.Take(ConfigurationHelper.MaxAgentsSearchResultSetLength)
+							.ToList();
+					}
 				}
 				else
 				{
@@ -68,37 +71,6 @@ namespace AgentRegisterOpenPart.Web.Controllers
 
 			viewModel.CaptchaImage = CaptchaImage.GenerateCaptchaImage();
 			return View(viewModel);
-		}
-
-		private static List<Agent> GetAgents(string searchText)
-		{
-			List<Agent> result = new List<Agent>();
-			for (int i = 0; i < 10; i++)
-			{
-				result.Add(new Agent()
-					{
-						Id = i,
-						UId = i,
-						NrInRegister = "" + i,
-						CertificateNr = "000000000" + i,
-						FirstName = "Иван" + i,
-						MiddleName = "Терентьевич" + i,
-						LastName = "Иванов" + i,
-						FirmWhereStudied = "Рос-Страх",
-						FirmWhereWorks = "Рос-Страх",
-						DateIncludedInRegister = DateTime.Now,
-						ProductsWorksWith = "A, B, C, D",
-						RecordValidDeadline = DateTime.Now,
-						Status = "Активен",
-						StatusID = 1,
-						TerritoryWhereWorks = "Россия",
-						TerritoryWhereWorksID = 1
-					});
-			}
-
-
-
-			return result;
 		}
 	}
 }
