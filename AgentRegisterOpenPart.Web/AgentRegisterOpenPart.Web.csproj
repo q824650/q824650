@@ -150,8 +150,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BusinessLayer\AgentSearch.cs" />
     <Compile Include="Controllers\AgentsController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="DataAccessLayer\DropCreateAgentsControllerWithInitialData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,8 +161,11 @@
     <Compile Include="Models\AgentContext.cs" />
     <Compile Include="Models\AgentsSearchViewModel.cs" />
     <Compile Include="Models\CaptchaImage.cs" />
+    <Compile Include="Models\InsuranceCompany.cs" />
     <Compile Include="Models\LogContext.cs" />
     <Compile Include="Models\LogItem.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Territory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ConfigurationHelper.cs" />
     <Compile Include="Utils\ExceptionTextFormatter.cs" />

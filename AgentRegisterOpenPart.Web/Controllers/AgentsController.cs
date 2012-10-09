@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AgentRegisterOpenPart.Web.Models;
 using AgentRegisterOpenPart.Web.Utils;
+using AgentRegisterOpenPart.Web.BusinessLayer;
 
 namespace AgentRegisterOpenPart.Web.Controllers
 {
@@ -38,7 +39,7 @@ namespace AgentRegisterOpenPart.Web.Controllers
 					searchText = searchText.Trim();
 
 					// Data access
-					viewModel.Agents = AgentContext.GetAgents(searchText);
+					viewModel.Agents = AgentSearch.GetAgents(searchText);
 
 					if (viewModel.Agents == null)
 					{
