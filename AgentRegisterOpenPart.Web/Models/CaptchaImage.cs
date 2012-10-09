@@ -277,10 +277,10 @@ namespace AgentRegisterOpenPart.Web.Models
 		/// </summary>
 		static CaptchaImage()
 		{
-			FontWarp = FontWarpFactor.Low;
+			FontWarp = FontWarpFactor.High;
 			BackgroundNoise = BackgroundNoiseLevel.Low;
-			LineNoise = LineNoiseLevel.Low;
-			TextLength = 5;
+			LineNoise = LineNoiseLevel.High;
+			TextLength = 4;
 			TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789";
 			CacheTimeOut = 600D;
 		}

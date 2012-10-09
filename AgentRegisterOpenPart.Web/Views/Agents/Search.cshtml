@@ -3,15 +3,14 @@
 @section scripts
 {
     <script type="text/javascript">
-
         $(function () {
             $('.agent-name-link').click(function (e) {
+                $('.agent-details').hide();
+                $(this).next('.agent-details').show();
                 e.preventDefault();
-                $('.agent-details-row').hide();
-                $(this).parents('tr:eq(0)').next().show();
             });
         });
-        
+
     </script>
 }
 
@@ -19,7 +18,23 @@
 {
     <style type="text/css">
 
-        #agentsSearchResultTable
+        .agent-name-link
+        {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .agent-details
+        {
+            margin: 17px 0px 17px 0px;
+        }
+
+        #agents-search-result li
+        {
+            margin: 3px 0px 3px 0px;
+        }
+
+        @*#agentsSearchResultTable
         {
             width: 100%;
         }
@@ -27,12 +42,6 @@
         #agentsSearchResultTable th
         {
             text-align:center;
-        }
-
-        .agent-name-link
-        {
-            text-decoration: underline;
-            cursor: pointer;
         }
 
         #main .agent-details-table
@@ -60,16 +69,16 @@
         #main .agent-details-name-td
         {
             width: 200px;
-        }
+        }*@
 
     </style>
 }
 
-<div id="main" style="width:550px">
+<div id="main" style="width: 550px">
 
     <h1>Реестр агентов</h1>
 
-    <p style="text-align:justify">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
+    <p style="text-align: justify">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
 
     @using (Html.BeginForm())
     {
@@ -79,10 +88,10 @@
     
         if (ViewBag.Error != null)
         {
-            <br />
-            <div style="color: #f00;font-weight:bold;">
-                @ViewBag.Error
-            </div>
+        <br />
+        <div style="color: #f00; font-weight: bold;">
+            @ViewBag.Error
+        </div>
         }
     
         @Html.Partial("_Captcha", Model.CaptchaImage)
@@ -95,7 +104,37 @@
     {
         <br />
         <div>
-            <table id="agentsSearchResultTable">
+            <ol id="agents-search-result">
+                @foreach (AgentRegisterOpenPart.Web.Models.Agent agent in Model.Agents)
+                {
+                    <li>
+                        <a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a>, @agent.FirmWhereWorks, сертификат #@agent.CertificateNr
+
+                        <div class="agent-details" style="display:none">
+                            <div>
+                                Дата включения в реестр: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateIncludedInRegister)
+                            </div>
+                            <div>
+                                Статус: @agent.Status
+                            </div>
+                            <div>
+                                Номер в реестре: @agent.NrInRegister
+                            </div>
+                            <div>
+                                Работает на территории: @agent.TerritoryWhereWorks
+                            </div>
+                            <div>
+                                Проходил обучение: @agent.FirmWhereStudied
+                            </div>
+                            <div>
+                                Срок действия записи: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(@agent.RecordValidDeadline)
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ol>
+
+            @*<table id="agentsSearchResultTable">
                 <thead>
                     <tr>
                         <th>ФИО</th>
@@ -115,7 +154,7 @@
                             <table class="agent-details-table">
                                 <tr>
                                     <td class="agent-details-name-td">Дата включения в реестр:</td>
-                                    <td>@agent.DateIncludedInRegister</td>
+                                    <td>@agent.DateIncludedInRegister.ToShortDateString()</td>
                                 </tr>
                                 <tr>
                                     <td class="agent-details-name-td">Статус:</td>
@@ -141,7 +180,11 @@
                         </td>
                     </tr>
                 }
-            </table>
+            </table>*@
+
+
+
+
         </div>
     }
 
