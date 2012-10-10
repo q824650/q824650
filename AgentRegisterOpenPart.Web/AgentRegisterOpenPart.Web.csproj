@@ -153,6 +153,7 @@
     <Compile Include="BusinessLayer\AgentSearch.cs" />
     <Compile Include="Controllers\AgentsController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="DataAccessLayer\CreateAgentsControllerWithInitialData.cs" />
     <Compile Include="DataAccessLayer\DropCreateAgentsControllerWithInitialData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

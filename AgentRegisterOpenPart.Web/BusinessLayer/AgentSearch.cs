@@ -9,6 +9,19 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
 {
     public class AgentSearch
     {
+        /// <summary>
+        /// 1. Splits the search string in words.
+        /// 2. Implements the following search logic:
+        ///     If a word contains digits, the search is done by the certificate number
+        ///     Else search is done by:
+        ///     If 1 word   
+        ///         By LastName
+        ///     If 2 words
+        ///         By {FirstName, LastName} OR By {LastName, FirstName}
+        ///     If 3 words 
+        ///         By {FirstName, MiddleName, LastName} OR By {LastName, MiddleName, FirstName}
+        ///     
+        /// </summary>
         public static List<Agent> GetAgents(string searchText)
         {
             using (AgentContext db = new AgentContext())

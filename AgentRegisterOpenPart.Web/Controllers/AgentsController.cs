@@ -18,7 +18,13 @@ namespace AgentRegisterOpenPart.Web.Controllers
 			viewModel.CaptchaImage = CaptchaImage.GenerateCaptchaImage();
 			return View(viewModel);
 		}
-
+        /// <summary>
+        /// Works according to the pattern Controller.
+        /// Specifics: unlike other methods it has its own processing of exceptions. 
+        /// It shows the user a generic message and writes the original exception message and details to the log.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
 		[HttpPost]
 		public ActionResult Search(AgentsSearchViewModel viewModel)
 		{
