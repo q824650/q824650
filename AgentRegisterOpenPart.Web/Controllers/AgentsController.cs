@@ -62,8 +62,9 @@ namespace AgentRegisterOpenPart.Web.Controllers
 								.ToList();
 						}
 					}
-					catch
+					catch (Exception ex)
 					{
+						LogContext.LogException(ex, "AgentRegisterOpenPart", "Was handled in AgentsController Search catch block");
 						ViewBag.Error = "Произошла системная ошибка. Попробуйте воспользоваться поиском позднее. Приносим извинения за неудобства.";
 						viewModel.Agents = null;
 					}
