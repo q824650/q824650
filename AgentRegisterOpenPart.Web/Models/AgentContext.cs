@@ -17,8 +17,9 @@ namespace AgentRegisterOpenPart.Web.Models
         }
 
 		public AgentContext()
-			: base("name=AgentContext")
+//			: base("name=AgentContext")
 		{
+
 		}
 		public DbSet<Agent> Agents { get; set; }
         public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
