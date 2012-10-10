@@ -16,7 +16,6 @@ namespace AgentRegisterOpenPart.Web.Models
 
 		public DateTime Date { get; set; }
 
-		[StringLength(4096)]
 		public string Text { get; set; }
 
 		public string Source { get; set; }

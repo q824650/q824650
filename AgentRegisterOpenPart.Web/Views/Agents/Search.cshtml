@@ -30,7 +30,8 @@
 
         #agents-search-result
         {
-            margin: 15px 20px;
+            margin: 10px 20px;
+            width:100%;
         }
 
         #agents-search-result li
@@ -118,28 +119,29 @@
     @if (Model.Agents != null && Model.Agents.Count > 0)
     {
         <br />
+        <br />
         <div>
             <ol id="agents-search-result">
                 @foreach (AgentRegisterOpenPart.Web.Models.Agent agent in Model.Agents)
                 {
                     <li>
-                        <a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a>, @agent.FirmWhereWorks, свидетельство № @agent.CertificateNr
+                        <a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a>, @agent.InsuranceCompanyWorksIn.Name, свидетельство № @agent.CertificateNumber
 
                         <div class="agent-details" style="display: none">
                             <div>
-                                Дата включения в реестр: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateIncludedInRegister)
+                                Дата включения в реестр: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateAdded)
                             </div>
                             <div>
-                                Статус: @agent.Status
+                                Статус: @agent.Status.Name
                             </div>
                             <div>
-                                Номер в реестре: @agent.NrInRegister
+                                Номер в реестре: @agent.Id
                             </div>
                             <div>
-                                Работает на территории: @agent.TerritoryWhereWorks
+                                Работает на территории: @agent.TerritoryWorksAt.Name
                             </div>
                             <div>
-                                Проходил обучение: @agent.FirmWhereStudied
+                                Проходил обучение: @agent.OrganizationHandedCertificate
                             </div>
                             <div>
                                 Срок действия записи: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(@agent.RecordValidDeadline)
