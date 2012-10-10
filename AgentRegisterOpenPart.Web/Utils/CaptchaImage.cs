@@ -26,7 +26,7 @@ using System.Web;
 using System.Text;
 using System.Web.Caching;
 
-namespace AgentRegisterOpenPart.Web.Models
+namespace AgentRegisterOpenPart.Web.Utils
 {
 	/// <summary>
 	/// Amount of random font warping to apply to rendered text

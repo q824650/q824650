@@ -160,7 +160,7 @@
     <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\AgentContext.cs" />
     <Compile Include="Models\AgentsSearchViewModel.cs" />
-    <Compile Include="Models\CaptchaImage.cs" />
+    <Compile Include="Utils\CaptchaImage.cs" />
     <Compile Include="Models\InsuranceCompany.cs" />
     <Compile Include="Models\LogContext.cs" />
     <Compile Include="Models\LogItem.cs" />

@@ -1,4 +1,4 @@
-﻿@model AgentRegisterOpenPart.Web.Models.CaptchaImage
+﻿@model AgentRegisterOpenPart.Web.Utils.CaptchaImage
 
 <input type="hidden" id="CaptchaId" name="CaptchaId" value="@Model.UniqueId" />
 
@@ -10,7 +10,7 @@
         <td style="width:1px">
             <img src='@Url.Action("Image", "Captcha", new { id = Model.UniqueId })' alt='CAPTCHA' width='@Model.Width' height='@Model.Height' />
         </td>
-        <td><input type="text" id="CaptchaText" name="CaptchaText" maxlength="@AgentRegisterOpenPart.Web.Models.CaptchaImage.TextLength" style="width:5em;float:right" /></td>
+        <td><input type="text" id="CaptchaText" name="CaptchaText" maxlength="@AgentRegisterOpenPart.Web.Utils.CaptchaImage.TextLength" style="width:5em;float:right" /></td>
     </tr>
 </table>
 

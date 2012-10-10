@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AgentRegisterOpenPart.Web.Models;
+using AgentRegisterOpenPart.Web.Utils;
 
 namespace AgentRegisterOpenPart.Web.Controllers
 {
