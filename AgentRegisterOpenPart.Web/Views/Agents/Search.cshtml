@@ -17,7 +17,6 @@
 @section styles
 {
     <style type="text/css">
-
         .agent-name-link
         {
             text-decoration: underline;
@@ -29,75 +28,91 @@
             margin: 17px 0px 17px 0px;
         }
 
+        #agents-search-result
+        {
+            margin: 15px 20px;
+        }
+
         #agents-search-result li
         {
             margin: 3px 0px 3px 0px;
         }
 
-        @*#agentsSearchResultTable
+        #main input[type="text"]
         {
-            width: 100%;
+            font: 16px arial,sans-serif;
+            padding: 2px 5px;
         }
 
-        #agentsSearchResultTable th
+        #main td
         {
-            text-align:center;
+            background-color: transparent;
+            vertical-align: middle;
+            padding: 0px;
         }
 
-        #main .agent-details-table
+        #main *
         {
-            width:100%;
-            border-width: 2px;
-	        border-spacing: 2px;
-	        border-style: inset;
-	        border-color: white;
-	        border-collapse: separate;
-	        background-color: white;
+            box-sizing: border-box;
         }
 
-        #main .agent-details-table td
+        /*#main *
         {
-            border-width: 0px;
-	        padding: 1px;
-	        border-style: none;
-	        border-color: gray;
-            background-color: white;
-            font-weight:bold;
-            font-size:small;
-        }
-
-        #main .agent-details-name-td
-        {
-            width: 200px;
-        }*@
-
+            border:1px solid lightgreen;
+        }*/
     </style>
 }
 
-<div id="main" style="width: 550px">
+<div id="main" style="max-width: 580px">
 
     <h1>Реестр агентов</h1>
 
-    <p style="text-align: justify">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
-
     @using (Html.BeginForm())
     {
-        @Html.TextBoxFor(m => m.SearchText, new { style = "width:100%" })
+        <div>
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <p style="text-align: justify;">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="SearchText" name="SearchText" maxlength="50" style="width:100%" value="@Model.SearchText" />
+                    </td>
+                </tr>
 
-        <br />
-    
-        if (ViewBag.Error != null)
-        {
-        <br />
-        <div style="color: #f00; font-weight: bold;">
-            @ViewBag.Error
+
+                @if (ViewBag.Error != null)
+                {
+                    <tr>
+                        <td>
+                            <br />
+                            <div style="color: #f00; font-weight: bold;">
+                                @ViewBag.Error
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            @Html.Partial("_Captcha", Model.CaptchaImage)
+
+            <br />
+
+            <div class="right" style="display: block">
+                <div class="form_button">
+                    <div>
+                        <label for="ajaxSearch_submit">
+                            <button type="submit">
+                                Найти<img src="http://www.ins-union.ru/css/images/login.gif">
+                            </button>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-        }
-    
-        @Html.Partial("_Captcha", Model.CaptchaImage)
-
-        <br />
-        <input type="submit" value="Найти" />
     }
 
     @if (Model.Agents != null && Model.Agents.Count > 0)
@@ -108,9 +123,9 @@
                 @foreach (AgentRegisterOpenPart.Web.Models.Agent agent in Model.Agents)
                 {
                     <li>
-                        <a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a>, @agent.FirmWhereWorks, сертификат #@agent.CertificateNr
+                        <a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a>, @agent.FirmWhereWorks, свидетельство № @agent.CertificateNr
 
-                        <div class="agent-details" style="display:none">
+                        <div class="agent-details" style="display: none">
                             <div>
                                 Дата включения в реестр: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateIncludedInRegister)
                             </div>
@@ -133,58 +148,6 @@
                     </li>
                 }
             </ol>
-
-            @*<table id="agentsSearchResultTable">
-                <thead>
-                    <tr>
-                        <th>ФИО</th>
-                        <th>Компания</th>
-                        <th>Номер сертификата</th>
-                    </tr>
-                </thead>
-                @foreach (AgentRegisterOpenPart.Web.Models.Agent agent in Model.Agents)
-                {
-                    <tr>
-                        <td><a class="agent-name-link">@agent.LastName @agent.FirstName @agent.MiddleName</a></td>
-                        <td>@agent.FirmWhereWorks</td>
-                        <td>@agent.CertificateNr</td>
-                    </tr>
-                    <tr class="agent-details-row" style="display:none">
-                        <td colspan="3">
-                            <table class="agent-details-table">
-                                <tr>
-                                    <td class="agent-details-name-td">Дата включения в реестр:</td>
-                                    <td>@agent.DateIncludedInRegister.ToShortDateString()</td>
-                                </tr>
-                                <tr>
-                                    <td class="agent-details-name-td">Статус:</td>
-                                    <td>@agent.Status</td>
-                                </tr>
-                                <tr>
-                                    <td class="agent-details-name-td">Номер в реестре:</td>
-                                    <td>@agent.NrInRegister</td>
-                                </tr>
-                                <tr>
-                                    <td class="agent-details-name-td">Работает на территории:</td>
-                                    <td>@agent.TerritoryWhereWorks</td>
-                                </tr>
-                                <tr>
-                                    <td class="agent-details-name-td">Проходил обучение:</td>
-                                    <td>@agent.FirmWhereStudied</td>
-                                </tr>
-                                <tr>
-                                    <td class="agent-details-name-td">Срок действия записи:</td>
-                                    <td>@agent.RecordValidDeadline</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                }
-            </table>*@
-
-
-
-
         </div>
     }
 

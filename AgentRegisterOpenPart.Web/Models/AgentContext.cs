@@ -30,36 +30,36 @@ namespace AgentRegisterOpenPart.Web.Models
 		public static List<Agent> GetAgents(string searchText)
 		{
 			#region Test data
-			//List<Agent> result = new List<Agent>();
-			//for (int i = 0; i < 30; i++)
-			//{
-			//	result.Add(new Agent()
-			//		{
-			//			Id = i,
-			//			UId = i,
-			//			NrInRegister = "" + i,
-			//			CertificateNr = "000000000" + i,
-			//			FirstName = (char)('А' + i) + "ван",
-			//			MiddleName = (char)('А' + i) + "ванович",
-			//			LastName = (i < 8 || i > 15) ? (char)('А' + i % 3) + "ванов" : "Иванов",
-			//			FirmWhereStudied = "Рос-Страх",
-			//			FirmWhereWorks = "Рос-Страх",
-			//			DateIncludedInRegister = DateTime.Now,
-			//			ProductsWorksWith = "A, B, C, D",
-			//			RecordValidDeadline = DateTime.Now,
-			//			Status = "Активен",
-			//			StatusID = 1,
-			//			TerritoryWhereWorks = "Россия",
-			//			TerritoryWhereWorksID = 1
-			//		});
-			//}
+			List<Agent> result = new List<Agent>();
+			for (int i = 0; i < 30; i++)
+			{
+				result.Add(new Agent()
+					{
+						Id = i,
+						UId = i,
+						NrInRegister = "" + i,
+						CertificateNr = "000000000" + i,
+						FirstName = (char)('А' + i) + "ван",
+						MiddleName = (char)('А' + i) + "ванович",
+						LastName = (i < 8 || i > 15) ? (char)('А' + i % 3) + "ванов" : "Иванов",
+						FirmWhereStudied = "Рос-Страх",
+						FirmWhereWorks = "Рос-Страх",
+						DateIncludedInRegister = DateTime.Now,
+						ProductsWorksWith = "A, B, C, D",
+						RecordValidDeadline = DateTime.Now,
+						Status = "Активен",
+						StatusID = 1,
+						TerritoryWhereWorks = "Россия",
+						TerritoryWhereWorksID = 1
+					});
+			}
 
-			////// Fill DB
-			////AgentContext ac = new AgentContext();
-			////result.ForEach(a => ac.Agents.Add(a));
-			////ac.SaveChanges();
+			//// Fill DB
+			//AgentContext ac = new AgentContext();
+			//result.ForEach(a => ac.Agents.Add(a));
+			//ac.SaveChanges();
 
-			//return result;
+			return result;
 			#endregion
 
 			using (AgentContext db = new AgentContext())

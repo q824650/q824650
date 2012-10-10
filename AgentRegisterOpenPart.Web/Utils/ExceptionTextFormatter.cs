@@ -19,14 +19,14 @@ namespace AgentRegisterOpenPart.Web.Utils
 
 		public override void Format()
 		{
-			Writer.WriteLine("*********************    EXCEPTION    ***********************");
+			Writer.WriteLine("EXCEPTION");
 
 			foreach (DictionaryEntry entry in this.Exception.Data)
 			{
-				Writer.WriteLine("****** Key='{0}' Value='{1}' ******", entry.Key, entry.Value);
+				Writer.WriteLine("* '{0}' = '{1}' *", entry.Key, entry.Value);
 			}
 
-			Writer.WriteLine("*************************************************************");
+			Writer.WriteLine("");
 			base.Format();
 		}
 

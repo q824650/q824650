@@ -291,7 +291,7 @@ namespace AgentRegisterOpenPart.Web.Models
 		public CaptchaImage()
 		{
 			_rand = new Random();
-			Width = 180;
+			Width = 150;
 			Height = 50;
 			Text = GenerateRandomText();
 			RenderedAt = DateTime.Now;

@@ -1,25 +1,16 @@
 ﻿@model AgentRegisterOpenPart.Web.Models.CaptchaImage
 
-<style type="text/css">
-    #captcha-table td
-    {
-        background-color:transparent;
-        vertical-align:middle;
-        padding: 0px;
-    }
-</style>
-
 <input type="hidden" id="CaptchaId" name="CaptchaId" value="@Model.UniqueId" />
 
-<p style="text-align:justify;">Пожалуйста, введите текст с изображения</p>
-<table id="captcha-table" style="border-color:black; border-width:medium">
+<table id="captcha-table" style="width:100%; margin:0px; border-collapse:collapse; border-spacing:0px; padding:0px;" border="0">
     <tr>
-        <td style="width:190px">
+        <td>
+            <p style="text-align:justify">Введите символы, указанные на изображении:</p>
+        </td>
+        <td style="width:1px">
             <img src='@Url.Action("Image", "Captcha", new { id = Model.UniqueId })' alt='CAPTCHA' width='@Model.Width' height='@Model.Height' />
         </td>
-        <td>
-            <input type="text" id="CaptchaText" name="CaptchaText" />
-        </td>
+        <td><input type="text" id="CaptchaText" name="CaptchaText" maxlength="@AgentRegisterOpenPart.Web.Models.CaptchaImage.TextLength" style="width:5em;float:right" /></td>
     </tr>
 </table>
 
