@@ -9,6 +9,12 @@
                 $(this).next('.agent-details').show();
                 e.preventDefault();
             });
+
+
+            $('#main button[type="submit"]').click(function () {
+                return $('#CaptchaText').val().replace(/\s/g, "") != "" && $('#SearchText').val().replace(/\s/g, "") != "";
+            });
+
         });
 
     </script>
@@ -28,16 +34,28 @@
             margin: 17px 0px 17px 0px;
         }
 
+            .agent-details div
+            {
+                margin-bottom: 3px;
+            }
+
+        .error
+        {
+            color: #f00;
+            font-weight: bold;
+        }
+
         #agents-search-result
         {
             margin: 10px 20px;
-            width:100%;
+            width: 100%;
         }
 
-        #agents-search-result li
-        {
-            margin: 3px 0px 3px 0px;
-        }
+            #agents-search-result li
+            {
+                font-size: 120%;
+                margin: 13px 0px 13px 0px;
+            }
 
         #main input[type="text"]
         {
@@ -82,27 +100,21 @@
                         <input type="text" id="SearchText" name="SearchText" maxlength="50" style="width:100%" value="@Model.SearchText" />
                     </td>
                 </tr>
-
-
-                @if (ViewBag.Error != null)
-                {
-                    <tr>
-                        <td>
-                            <br />
-                            <div style="color: #f00; font-weight: bold;">
-                                @ViewBag.Error
-                            </div>
-                        </td>
-                    </tr>
-                }
-
             </table>
 
             @Html.Partial("_Captcha", Model.CaptchaImage)
 
-            <br />
+            @if (ViewBag.CaptchaError != null)
+            {
+                <div class="error right" style="display: block;">
+                    @ViewBag.CaptchaError
+                </div>
+                <br />
+                <br />
+            }
 
-            <div class="right" style="display: block">
+
+            <div class="right" style="display: block;">
                 <div class="form_button">
                     <div>
                         <label for="ajaxSearch_submit">
@@ -113,13 +125,27 @@
                     </div>
                 </div>
             </div>
+
+            <br />
+            <br />
+
+            @if (ViewBag.Error != null)
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <div class="error" style="text-align:justify">
+                                @ViewBag.Error
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
         </div>
     }
 
     @if (Model.Agents != null && Model.Agents.Count > 0)
     {
-        <br />
-        <br />
         <div>
             <ol id="agents-search-result">
                 @foreach (AgentRegisterOpenPart.Web.Models.Agent agent in Model.Agents)

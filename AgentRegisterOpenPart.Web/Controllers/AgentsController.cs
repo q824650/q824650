@@ -57,13 +57,8 @@ namespace AgentRegisterOpenPart.Web.Controllers
 						}
 						else if (viewModel.Agents.Count > ConfigurationHelper.MaxAgentsSearchResultSetLength)
 						{
-							ViewBag.Error = string.Format(
-								"По вашему запросу найдено более {0} записей. Пожалуйста уточните свой запрос.",
-								ConfigurationHelper.MaxAgentsSearchResultSetLength);
-
-							viewModel.Agents = viewModel.Agents
-								.Take(ConfigurationHelper.MaxAgentsSearchResultSetLength)
-								.ToList();
+							ViewBag.Error = "Вашему запросу соответствует слишком много результатов поиска. Пожалуйста, уточните свой запрос.";
+							viewModel.Agents = null;
 						}
 					}
 					catch (Exception ex)
@@ -80,7 +75,7 @@ namespace AgentRegisterOpenPart.Web.Controllers
 			}
 			else
 			{
-				ViewBag.Error = "Текст с изображения введен неверно.";
+				ViewBag.CaptchaError = "Текст не совпадает с указанным на изображении.";
 			}
 
 			viewModel.CaptchaImage = CaptchaImage.GenerateCaptchaImage();
