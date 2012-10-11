@@ -12,7 +12,7 @@ namespace AgentRegisterOpenPart.Web.Models
 		// System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<MVC4Sample.Web.Models.PersonContext>());
 
 		public LogContext()
-		//	: base("name=LogContext")
+//		//	: base("name=LogContext")
 		{
 		}
 

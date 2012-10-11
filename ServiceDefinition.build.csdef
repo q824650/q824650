@@ -26,5 +26,6 @@
     <LocalResources>
       <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" />
     </LocalResources>
+    <ConfigurationSettings></ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>

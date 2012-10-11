@@ -13,12 +13,12 @@ namespace AgentRegisterOpenPart.Web.Models
 	{		
 		static AgentContext()
         {
+            Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
             //Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
-            Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
         }
 
 		public AgentContext()
-//			: base("name=AgentContext")
+			//: base("name=AgentContext")
 		{
 
 		}
