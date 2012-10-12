@@ -32,11 +32,11 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
             context.Territories.Add(new Territory { Id = 7, Name = "Приволжский Федеральный Округ" });
             context.Territories.Add(new Territory { Id = 8, Name = "Северо-Кавказский Федеральный Округ" });
 
-            List<string> insuranceCompanies = new List<string> { "Аско", "Росно", "Госстрах", "Ингосстрах" };
+            List<string> insuranceCompanies = new List<string> { "Аско", "Росно", "Госстрах", "Ингосстрах", "Росгосстрах" };
             int k = 0;
             insuranceCompanies.ForEach(n => context.InsuranceCompanies.Add(new InsuranceCompany { Id = k++, Name = n }));
 
-            string[] products = new string[] { "Каско", "Осаго", "Босаго", "Мосаго" };
+            string[] products = new string[] { "ОСАГО", "ДСАГО", "КАСКО", "ВЗР" };
 
             string[] имя = new string[] { "Иван", "Александр", "Олег", "Михаил", "Рамзан", "Исаак", "Ромуальд" };
             string[] отчество = new string[] { "Иванович", "Александрович", "Михайлович", "Рамзанович", "Исаакович", "Ромуальдович" };
