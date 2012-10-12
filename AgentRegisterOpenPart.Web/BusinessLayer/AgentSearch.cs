@@ -43,7 +43,7 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
                     {
                         // Ищем сертификат по числовой подстроке
                         agentsResult = agentsResult.Where(a =>
-                            a.CertificateNumber.Contains(searchText));
+                            a.CertificateNumber.StartsWith(searchText));                            
                     }
                 }
                 else
@@ -52,26 +52,26 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
                     string w0, w1, w2;
                     if (words.Length == 1)
                     {                        
-                        w0 = words[0].ToLower();
+                        w0 = words[0];
 						agentsResult = agentsResult.Where(a =>
-                            a.LastName.ToLower() == w0);
+                            a.LastName.StartsWith(w0));
                     }
                     else if (words.Length == 2)
                     {
-                        w0 = words[0].ToLower();
-                        w1 = words[1].ToLower();
+                        w0 = words[0];
+                        w1 = words[1];
 						agentsResult = agentsResult.Where(a =>
-                            (a.FirstName.ToLower() == w0 && a.LastName.ToLower() == w1) ||
-                            (a.FirstName.ToLower() == w1 && a.LastName.ToLower() == w0));
+                            (a.FirstName.StartsWith(w0) && a.LastName.StartsWith(w1)) ||
+                            (a.FirstName.StartsWith(w1) && a.LastName.StartsWith(w0)));
                     }
                     else if (words.Length == 3)
                     {
-                        w0 = words[0].ToLower();
-                        w1 = words[1].ToLower();
-                        w2 = words[2].ToLower();
+                        w0 = words[0];
+                        w1 = words[1];
+                        w2 = words[2];
 						agentsResult = agentsResult.Where(a =>
-                            (a.FirstName.ToLower() == w1 && a.MiddleName.ToLower() == w2 && a.LastName.ToLower() == w0) ||
-                            (a.FirstName.ToLower() == w0 && a.MiddleName.ToLower() == w1 && a.LastName.ToLower() == w2));
+                            (a.FirstName.StartsWith(w1) && a.MiddleName.StartsWith(w2) && a.LastName.StartsWith(w0)) ||
+                            (a.FirstName.StartsWith(w0) && a.MiddleName.StartsWith(w1) && a.LastName.StartsWith(w2)));
                     }
                     else
                     {
@@ -81,7 +81,9 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
                 }
 
                 return agentsResult
-                    .OrderBy(a => a.LastName + " " + a.FirstName + " " + a.MiddleName)
+                    .OrderBy(a => a.LastName)
+                    .ThenBy( a =>  a.FirstName)
+                    .ThenBy( a => a.MiddleName)
                     .Take(ConfigurationHelper.MaxAgentsSearchResultSetLength + 1)
                     .ToList();
             }

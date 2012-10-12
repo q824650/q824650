@@ -13,14 +13,12 @@ namespace AgentRegisterOpenPart.Web.Models
 	{		
 		static AgentContext()
         {
-            Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
-            //Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
+            //Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
+            Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
         }
 
-		public AgentContext()
-			//: base("name=AgentContext")
+		public AgentContext()			
 		{
-
 		}
 		public DbSet<Agent> Agents { get; set; }
         public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
@@ -28,12 +26,21 @@ namespace AgentRegisterOpenPart.Web.Models
         public DbSet<Status> Statuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        { //Tell EF that Status and Territory have manually entered key values.
-            modelBuilder.Entity<Status>()
-            .Property(d => d.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+        {            
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.CertificateNumber).HasMaxLength(60);
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.FirstName).HasMaxLength(60);
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.MiddleName).HasMaxLength(60);
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.LastName).HasMaxLength(60);
 
+            //Status and Territory have manually entered key values.
+            modelBuilder.Entity<Status>()
+            .Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Territory>()
-            .Property(d => d.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            .Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
 	}
 }

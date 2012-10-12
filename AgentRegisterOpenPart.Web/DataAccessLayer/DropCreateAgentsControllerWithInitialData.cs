@@ -12,6 +12,12 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
     {
         protected override void Seed(AgentContext context)
         {
+            context.Database.ExecuteSqlCommand
+            ("CREATE INDEX IX_Agents_CertificateNumber  ON Agents (CertificateNumber);"+ Environment.NewLine +
+             "CREATE INDEX IX_Agents_FirstName          ON Agents (FirstName);" + Environment.NewLine +
+             "CREATE INDEX IX_Agents_MiddleName         ON Agents (MiddleName);" + Environment.NewLine +
+             "CREATE INDEX IX_Agents_LastName           ON Agents (LastName);");
+
             DateTime dateAdded = DateTime.Now;
 
             context.Statuses.Add(new Status { Id = 1, Name = "Неактивен" });

@@ -53,7 +53,7 @@ namespace AgentRegisterOpenPart.Web.Controllers
 						}
 						else if (viewModel.Agents.Count == 0)
 						{
-							ViewBag.Error = "По вашему запросу не найдено ни одно совпадение.";
+							ViewBag.Error = "По вашему запросу не найдено ни одного совпадения.";
 						}
 						else if (viewModel.Agents.Count > ConfigurationHelper.MaxAgentsSearchResultSetLength)
 						{
