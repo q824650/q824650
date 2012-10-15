@@ -34,17 +34,23 @@ namespace AgentRegisterOpenPart.Web.Models
             modelBuilder.Entity<Agent>()
             .Property(a => a.MiddleName).HasMaxLength(60);
             modelBuilder.Entity<Agent>()
-            .Property(a => a.LastName).HasMaxLength(60);            
+            .Property(a => a.LastName).HasMaxLength(60);
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.TerritoryWorksAtKLADRCode)
+            .HasMaxLength(13)
+            .HasColumnType("varchar");
+
             modelBuilder.Entity<Agent>()
                 .HasOptional<Territory>(a => a.TerritoryWorksAt)
                 .WithMany()
                 .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
-            
 
             //Territory has manually entered key values.
             modelBuilder.Entity<Territory>().HasKey<string>(t=>t.KLADRCode);
             modelBuilder.Entity<Territory>()
             .Property(t => t.KLADRCode)
+            .HasMaxLength(13)
+            .HasColumnType("varchar")
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             //Status has manually entered key values.
