@@ -32,7 +32,12 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
             context.Territories.Add(new Territory { Id = 7, Name = "Приволжский Федеральный Округ" });
             context.Territories.Add(new Territory { Id = 8, Name = "Северо-Кавказский Федеральный Округ" });
 
-            List<string> insuranceCompanies = new List<string> { "Аско", "Росно", "Госстрах", "Ингосстрах", "Росгосстрах" };
+            List<string> insuranceCompanies = new List<string> { 
+                "Allianz РОСНО Жизнь", "АльфаСтрахование", "Альянс (страховая компания)", "ВСК", "ВТБ Страхование", "Гута-Страхование", 
+                "Дженерали ППФ Страхование жизни", "Защита-Находка", "Ингосстрах", "Интач Страхование", "МАКС (страховая компания)", 
+                "МетЛайф Алико (страховая компания)", "Находка Ре", "Национальная страховая группа", /*"Реестр субъектов страхового дела",*/
+                "Ренессанс Страхование", "РЕСО-Гарантия", "Росгосстрах", "Россия (страховая компания)", "Согаз", "Согласие (компания)", 
+                "Страховая группа МСК", "Страховое общество ЖАСО", "Уралсиб (СГ)", "Югория" };
             int k = 0;
             insuranceCompanies.ForEach(n => context.InsuranceCompanies.Add(new InsuranceCompany { Id = k++, Name = n }));
 
