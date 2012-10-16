@@ -150,6 +150,7 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
                 context.Agents.Add(new Agent()
                     {
                         //Id = i,
+                        AgencyAgreementNumber = rnd.Next(1000000).ToString(),
                         CertificateNumber = rnd.Next(1000000).ToString(),
 
                         FirstName = имя[rnd.Next(0, имя.Count() - 1)],

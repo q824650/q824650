@@ -39,6 +39,10 @@ namespace AgentRegisterOpenPart.Web.Models
             .Property(a => a.TerritoryWorksAtKLADRCode)
             .HasMaxLength(13)
             .HasColumnType("varchar");
+            modelBuilder.Entity<Agent>()
+            .Property(a => a.AgencyAgreementNumber)
+            .HasMaxLength(13)
+            .HasColumnType("varchar");
 
             modelBuilder.Entity<Agent>()
                 .HasOptional<Territory>(a => a.TerritoryWorksAt)

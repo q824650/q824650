@@ -7,7 +7,8 @@ namespace AgentRegisterOpenPart.Web.Models
 {
 	public class Agent
 	{
-		public virtual int Id { get; set; }	
+		public virtual int Id { get; set; }
+        public virtual string AgencyAgreementNumber { get; set; }
 		public virtual string FirstName { get; set; }
 		public virtual string MiddleName { get; set; }
 		public virtual string LastName { get; set; }
