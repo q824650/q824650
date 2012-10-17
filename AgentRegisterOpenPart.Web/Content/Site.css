@@ -94,10 +94,6 @@ a:hover { text-decoration:none}
 .head_lang_block a.active_lang { background: url("http://www.ins-union.ru/css/images/lang_active.gif") 0px 0px no-repeat; color:#fff; }
 
 
-.form_button { background: url("http://www.ins-union.ru/css/images/button_left.gif") 0px 0px no-repeat; float:left; }
-.form_button div { background: url("http://www.ins-union.ru/css/images/button_right.gif") 100% 0px no-repeat; height: 23px; }
-.form_button div button { border:none; background:transparent; margin:0px; font-size: 13px; font-family: georgia; font-style:italic; color:#fff;padding-top:3px; padding-left: 8px; padding-right: 8px; padding-bottom: 3px; cursor: hand; cursor:pointer;}
-.form_button div button img { display:inline; margin:auto; vertical-align:middle; margin-right: 2px; margin-left: 6px; margin-top: -2px;}
 .login_form_button { padding-top: 6px; padding-right: 9px; }
 
 .main_menu_links { padding: 3px 0px 3px 20px; width: 238px;}
