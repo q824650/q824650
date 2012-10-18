@@ -15,5 +15,13 @@ namespace AgentRegisterOpenPart.Web.Utils
 				return int.Parse(WebConfigurationManager.AppSettings["MaxAgentsSearchResultSetLength"]);
 			}
 		}
+
+        public static string DatabaseCreationMode
+        {
+            get
+            {
+                return WebConfigurationManager.AppSettings["DatabaseCreationMode"];
+            }
+        }
 	}
 }

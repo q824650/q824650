@@ -13,8 +13,10 @@ namespace AgentRegisterOpenPart.Web.Models
 	{		
 		static AgentContext()
         {
-            //Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
-            Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
+            if (ConfigurationHelper.DatabaseCreationMode == "DropCreateAgentsControllerWithInitialData")            
+                Database.SetInitializer<AgentContext>(new DropCreateAgentsControllerWithInitialData());
+            else if (ConfigurationHelper.DatabaseCreationMode == "CreateAgentsControllerWithInitialData")
+                Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
         }
 
 		public AgentContext()			
@@ -56,7 +58,7 @@ namespace AgentRegisterOpenPart.Web.Models
             modelBuilder.Entity<Territory>()
             .Property(t => t.KLADRCode)
             .HasMaxLength(13)
-            .HasColumnType("varchar")
+            //.HasColumnType("varchar")
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             //Status has manually entered key values.
