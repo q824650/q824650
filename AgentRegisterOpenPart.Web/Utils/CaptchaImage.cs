@@ -277,11 +277,12 @@ namespace AgentRegisterOpenPart.Web.Utils
 		/// </summary>
 		static CaptchaImage()
 		{
-			FontWarp = FontWarpFactor.High;
-			BackgroundNoise = BackgroundNoiseLevel.Low;
+			FontWarp = FontWarpFactor.Medium;
+			BackgroundNoise = BackgroundNoiseLevel.Medium;
 			LineNoise = LineNoiseLevel.High;
 			TextLength = 4;
-			TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789";
+			//TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789"; // ENG
+            TextChars = "АБВГДЕЖИКЛМНПРСТУФХЦЧШЬЭЮЯ1245679";
 			CacheTimeOut = 600D;
 		}
 
@@ -396,7 +397,7 @@ namespace AgentRegisterOpenPart.Web.Utils
 					fsize = Convert.ToInt32(_height * 0.8);
 					break;
 				case FontWarpFactor.Medium:
-					fsize = Convert.ToInt32(_height * 0.85);
+					fsize = Convert.ToInt32(_height * 0.87);
 					break;
 				case FontWarpFactor.High:
 					fsize = Convert.ToInt32(_height * 0.9);
