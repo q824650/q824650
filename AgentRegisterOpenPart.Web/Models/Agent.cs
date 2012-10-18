@@ -17,7 +17,8 @@ namespace AgentRegisterOpenPart.Web.Models
         public virtual int InsuranceCompanyWorksInId { get; set; }
         public virtual InsuranceCompany InsuranceCompanyWorksIn { get; set; }
 
-		public virtual DateTime DateAdded { get; set; }
+		public virtual DateTime DateAddedToRegister { get; set; }
+        public virtual int TimeLengthCertificateValid { get; set; }
 		
         public virtual string TerritoryWorksAtKLADRCode { get; set; }
         public virtual Territory TerritoryWorksAt { get; set; }
@@ -26,7 +27,7 @@ namespace AgentRegisterOpenPart.Web.Models
 		public virtual Status Status { get; set; }
 
 		public virtual string OrganizationHandedCertificate { get; set; }
-		public virtual DateTime RecordValidDeadline { get; set; }
+		public virtual DateTime RecordValidDeadline { get{return DateAddedToRegister.AddMonths(TimeLengthCertificateValid);} set{} }
 		public virtual string ProductsWorksWith { get; set; }
 	}
 }

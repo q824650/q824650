@@ -18,9 +18,7 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
              //"CREATE INDEX IX_Agents_MiddleName         ON Agents (MiddleName);" + Environment.NewLine +
              "CREATE INDEX IX_Agents_LastName           ON Agents (LastName);" +
              "CREATE INDEX IX_Territories_KLADRCode     ON Territories (KLADRCode);");
-
-            DateTime dateAdded = DateTime.Now;
-
+            
             context.Statuses.Add(new Status { Id = 1, Name = "Неактивен" });
             context.Statuses.Add(new Status { Id = 10, Name = "Активен" });
 
@@ -116,6 +114,7 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
                 "Ренессанс Страхование", "РЕСО-Гарантия", "Росгосстрах", "Россия (страховая компания)", "Согаз", "Согласие (компания)", 
                 "Страховая группа МСК", "Страховое общество ЖАСО", "Уралсиб (СГ)", "Югория" };
 
+            
             int k = 0;
             insuranceCompanies.ForEach(n => context.InsuranceCompanies.Add(new InsuranceCompany { Id = k++, Name = n }));
 
@@ -127,6 +126,9 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
 
             var statAr = context.Statuses.Local.ToArray();
             Random rnd = new Random();
+
+            DateTime baseDate = DateTime.Now.AddYears(-3);
+
 
             for (int i = 0; i < 30; i++)
             {
@@ -159,11 +161,10 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
 
                         OrganizationHandedCertificate = insuranceCompanies[rnd.Next(0, insuranceCompanies.Count() - 1)],
                         InsuranceCompanyWorksInId = rnd.Next(0, context.InsuranceCompanies.Local.Count() - 1),
-                        DateAdded = dateAdded,
+                        DateAddedToRegister = baseDate.AddMonths(rnd.Next(1,59)),
 
                         ProductsWorksWith = productList,
-                        RecordValidDeadline = dateAdded.AddYears(rnd.Next(1, 5)),
-
+                        TimeLengthCertificateValid = rnd.Next(1, 40),
                         StatusID = statusID,
 
                         TerritoryWorksAtKLADRCode = territoryWorksAt.KLADRCode,

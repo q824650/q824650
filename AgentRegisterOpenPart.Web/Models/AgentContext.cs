@@ -29,6 +29,7 @@ namespace AgentRegisterOpenPart.Web.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {            
+            //Agents
             modelBuilder.Entity<Agent>()
             .Property(a => a.CertificateNumber).HasMaxLength(60);
             modelBuilder.Entity<Agent>()
@@ -39,29 +40,26 @@ namespace AgentRegisterOpenPart.Web.Models
             .Property(a => a.LastName).HasMaxLength(60);
             modelBuilder.Entity<Agent>()
             .Property(a => a.TerritoryWorksAtKLADRCode)
-            .HasMaxLength(13)
-            //.HasColumnType("varchar")
-            ;
+            .HasMaxLength(13);
             modelBuilder.Entity<Agent>()
             .Property(a => a.AgencyAgreementNumber)
-            .HasMaxLength(20)
-            //.HasColumnType("varchar")
-            ;
-
+            .HasMaxLength(20);
+            modelBuilder.Entity<Agent>().Ignore<DateTime>(a => a.RecordValidDeadline);
             modelBuilder.Entity<Agent>()
                 .HasOptional<Territory>(a => a.TerritoryWorksAt)
                 .WithMany()
                 .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
 
-            //Territory has manually entered key values.
+            //Territory
+            //has manually entered key values.
             modelBuilder.Entity<Territory>().HasKey<string>(t=>t.KLADRCode);
             modelBuilder.Entity<Territory>()
             .Property(t => t.KLADRCode)
             .HasMaxLength(13)
-            //.HasColumnType("varchar")
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-            //Status has manually entered key values.
+            //Status
+            //has manually entered key values.
             modelBuilder.Entity<Status>()
             .Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
