@@ -3,7 +3,6 @@
   <Role name="AgentRegisterOpenPart.Web">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="q824650" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEAK3vIF8y5GDQhmhDZgT5UwwDQYJKoZIhvcNAQEBBQAEggEAA+QZZVDhqVoGPVuXVvo4cpg4X2+ntj1Hzc3akaUwtBIgrKRq06e9MfaU5pted8jC5/OYiqWuqR8VHkriYnZWr93XH9DlWMXF/1jnVtlE6W5vVSR4TaawjtloNeLFOlIQB7zYKMSl9/xvSrrWle+hHVsmB5gpRCPeqZLemaVgy0C0CuvovsvsGUowJ/Nga+ZDtYhDtvIxWoKnytLCVu52YfyxAIKV6WfvjzYzVFvxwkZMjww2pw9jiSNMjfWDfzadwWKPvTBhJ65ePNucXJ2XVliqUuE/vMXBr5Ng9G8fh/wB0SjUEKTl1qhZ+OW0bTSjyPiIODl086GJuKSMjFU8HDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECPwQNzVSN9yKgBCtcxU7NB/yHoH9VJt0y5iV" />
