@@ -9,6 +9,7 @@ using AgentRegisterOpenPart.Web.BusinessLayer;
 
 namespace AgentRegisterOpenPart.Web.Controllers
 {
+    [PerformanceFilterAttribute]
 	public class AgentsController : Controller
 	{
 		[HttpGet]
@@ -44,8 +45,12 @@ namespace AgentRegisterOpenPart.Web.Controllers
 
 					try
 					{
-						// Data access
-						viewModel.Agents = AgentSearch.GetAgents(searchText);
+
+                        using (new Performance(ms => ViewBag.DbTime = ms))
+                        {
+                            // Data access
+                            viewModel.Agents = AgentSearch.GetAgents(searchText);
+                        }
 
 						if (viewModel.Agents == null)
 						{
