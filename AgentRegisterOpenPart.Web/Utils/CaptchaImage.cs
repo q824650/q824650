@@ -283,7 +283,7 @@ namespace AgentRegisterOpenPart.Web.Utils
 			TextLength = 4;
 			//TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789"; // ENG
             TextChars = "АБВГДЕЖИКЛМНПРСТУФХЦЧШЬЭЮЯ1245679";
-			CacheTimeOut = 600D;
+			CacheTimeOut = 21600D; // 6 hours
 		}
 
 		/// <summary>

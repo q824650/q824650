@@ -17,6 +17,9 @@
         </Bindings>
       </Site>
     </Sites>
+    <Startup>
+      <Task commandLine="Startup\DisableIISIdleTimeout.cmd" executionContext="elevated" />
+    </Startup>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>

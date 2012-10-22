@@ -8,6 +8,8 @@ namespace AgentRegisterOpenPart.Web.Utils
 {
 	public static class ConfigurationHelper
 	{
+        public static bool PerformanceStatisticsOn = false;
+
 		public static int MaxAgentsSearchResultSetLength
 		{
 			get
