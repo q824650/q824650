@@ -30,22 +30,7 @@ namespace AgentRegisterOpenPart.Web.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {            
             //Agents
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.CertificateNumber).HasMaxLength(60);
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.FirstName).HasMaxLength(60);
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.MiddleName).HasMaxLength(60);
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.LastName).HasMaxLength(60);
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.TerritoryWorksAtKLADRCode)
-            .HasMaxLength(13);
-            modelBuilder.Entity<Agent>()
-            .Property(a => a.AgencyAgreementNumber)
-            .HasMaxLength(20);
-            modelBuilder.Entity<Agent>()
-            .Property<DateTime>(a => a.DateCertificateExpires).IsOptional();
+            //modelBuilder.Entity<Agent>().Property<DateTime>(a => a.DateCertificateExpires).IsOptional();
             modelBuilder.Entity<Agent>()
             .HasOptional<Territory>(a => a.TerritoryWorksAt)
             .WithMany()
@@ -55,8 +40,7 @@ namespace AgentRegisterOpenPart.Web.Models
             //has manually entered key values.
             modelBuilder.Entity<Territory>().HasKey<string>(t=>t.KLADRCode);
             modelBuilder.Entity<Territory>()
-            .Property(t => t.KLADRCode)
-            .HasMaxLength(13)
+            .Property(t => t.KLADRCode)            
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             //Status

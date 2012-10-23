@@ -10,5 +10,9 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
 {
     public class CreateAgentsControllerWithInitialData : CreateDatabaseIfNotExists<AgentContext>
     {
+        protected override void Seed(AgentContext context)
+        {
+            InitDatabase.CreateIndicesSeedLookups(context);
+        }
     }
 }

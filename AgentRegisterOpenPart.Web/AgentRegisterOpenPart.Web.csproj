@@ -155,6 +155,7 @@
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="DataAccessLayer\CreateAgentsControllerWithInitialData.cs" />
     <Compile Include="DataAccessLayer\DropCreateAgentsControllerWithInitialData.cs" />
+    <Compile Include="DataAccessLayer\InitDatabase.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,7 +314,7 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AgentRegisterOpenPart.Web.Models;
 using AgentRegisterOpenPart.Web.Utils;
 using AgentRegisterOpenPart.Web.BusinessLayer;
+using System.Data.Entity.Validation;
 
 namespace AgentRegisterOpenPart.Web.Controllers
 {
@@ -66,6 +67,19 @@ namespace AgentRegisterOpenPart.Web.Controllers
 							viewModel.Agents = null;
 						}
 					}
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string errors = string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                                LogContext.LogException(dbEx, "AgentRegisterOpenPart", errors);
+                                ViewBag.Error = "Произошла ошибка данных. Попробуйте воспользоваться поиском позднее. Приносим извинения за неудобства.";
+                                viewModel.Agents = null;
+                            }
+                        }
+                    }
 					catch (Exception ex)
 					{
 						LogContext.LogException(ex, "AgentRegisterOpenPart", "Was handled in AgentsController Search catch block");
