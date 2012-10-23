@@ -7,6 +7,7 @@ using AgentRegisterOpenPart.Web.Models;
 using AgentRegisterOpenPart.Web.Utils;
 using AgentRegisterOpenPart.Web.BusinessLayer;
 using System.Data.Entity.Validation;
+using System.Text;
 
 namespace AgentRegisterOpenPart.Web.Controllers
 {
@@ -46,7 +47,6 @@ namespace AgentRegisterOpenPart.Web.Controllers
 
 					try
 					{
-
                         using (new Performance(ms => ViewBag.DbTime = ms))
                         {
                             // Data access
@@ -69,16 +69,17 @@ namespace AgentRegisterOpenPart.Web.Controllers
 					}
                     catch (DbEntityValidationException dbEx)
                     {
+                        StringBuilder errors = new StringBuilder();
                         foreach (var validationErrors in dbEx.EntityValidationErrors)
                         {
                             foreach (var validationError in validationErrors.ValidationErrors)
                             {
-                                string errors = string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                                LogContext.LogException(dbEx, "AgentRegisterOpenPart", errors);
-                                ViewBag.Error = "Произошла ошибка данных. Попробуйте воспользоваться поиском позднее. Приносим извинения за неудобства.";
-                                viewModel.Agents = null;
+                                errors.AppendFormat("Property: {0} Error: {1}; ", validationError.PropertyName, validationError.ErrorMessage);
                             }
                         }
+                        LogContext.LogException(dbEx, "AgentRegisterOpenPart", errors.ToString());
+                        ViewBag.Error = "Произошла ошибка данных. Попробуйте воспользоваться поиском позднее. Приносим извинения за неудобства.";
+                        viewModel.Agents = null;
                     }
 					catch (Exception ex)
 					{
