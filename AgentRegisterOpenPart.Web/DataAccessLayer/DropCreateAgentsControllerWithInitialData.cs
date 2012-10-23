@@ -150,8 +150,7 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
                 var territoryWorksAt = context.Territories.Local.Skip(territoryWorksAtNum).Take(1).Single();
 
                 context.Agents.Add(new Agent()
-                    {
-                        //Id = i,
+                    {                        
                         AgencyAgreementNumber = rnd.Next(1000000).ToString(),
                         CertificateNumber = rnd.Next(1000000).ToString(),
 
@@ -161,10 +160,9 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
 
                         OrganizationHandedCertificate = insuranceCompanies[rnd.Next(0, insuranceCompanies.Count() - 1)],
                         InsuranceCompanyWorksInId = rnd.Next(0, context.InsuranceCompanies.Local.Count() - 1),
-                        DateAddedToRegister = baseDate.AddMonths(rnd.Next(1,59)),
+                        DateCertificateExpires = baseDate.AddMonths(rnd.Next(1,59)),
 
-                        ProductsWorksWith = productList,
-                        TimeLengthCertificateValid = rnd.Next(1, 40),
+                        ProductsWorksWith = productList,                     
                         StatusID = statusID,
 
                         TerritoryWorksAtKLADRCode = territoryWorksAt.KLADRCode,

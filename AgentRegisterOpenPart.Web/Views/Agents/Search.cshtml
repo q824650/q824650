@@ -204,7 +204,7 @@
 
                         <div class="agent-details" style="display: none">
                             <div>
-                                Дата включения в реестр: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateAddedToRegister)
+                                Дата истечения срока действия сертификата: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateCertificateExpires)
                             </div>
                             <div>
                                 Статус: @agent.Status.Name
@@ -217,9 +217,6 @@
                             </div>
                             <div>
                                 Проходил обучение: @agent.OrganizationHandedCertificate
-                            </div>
-                            <div>
-                                Срок действия Свидетельства: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(@agent.RecordValidDeadline)
                             </div>
                             <div>
                                 Страховые продукты, которые может предлагать: @agent.ProductsWorksWith

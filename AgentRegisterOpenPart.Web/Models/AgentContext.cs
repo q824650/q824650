@@ -44,11 +44,12 @@ namespace AgentRegisterOpenPart.Web.Models
             modelBuilder.Entity<Agent>()
             .Property(a => a.AgencyAgreementNumber)
             .HasMaxLength(20);
-            modelBuilder.Entity<Agent>().Ignore<DateTime>(a => a.RecordValidDeadline);
             modelBuilder.Entity<Agent>()
-                .HasOptional<Territory>(a => a.TerritoryWorksAt)
-                .WithMany()
-                .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
+            .Property<DateTime>(a => a.DateCertificateExpires).IsOptional();
+            modelBuilder.Entity<Agent>()
+            .HasOptional<Territory>(a => a.TerritoryWorksAt)
+            .WithMany()
+            .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
 
             //Territory
             //has manually entered key values.
