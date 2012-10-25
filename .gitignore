@@ -2,6 +2,7 @@
 /bin
 /obj
 /csx
+/.svn
 /Website/bin
 /Website/obj
 [~]*.*

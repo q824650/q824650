@@ -20,11 +20,11 @@ namespace AgentRegisterOpenPart.Web.Models
 		public virtual string LastName { get; set; }
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Длина номера сертификата находится вне пределов 1..60.")]
 		public virtual string CertificateNumber { get; set; }
-        
+        public virtual DateTime DateCertificateExpires { get; set; }
+
         public virtual int InsuranceCompanyWorksInId { get; set; }
         public virtual InsuranceCompany InsuranceCompanyWorksIn { get; set; }
-
-		public virtual DateTime DateCertificateExpires { get; set; }
+		
         [StringLength(15)]
         public virtual string TerritoryWorksAtKLADRCode { get; set; }
         public virtual Territory TerritoryWorksAt { get; set; }

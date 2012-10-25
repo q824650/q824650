@@ -8,13 +8,33 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
 {
     public static class InitDatabase
     {
-        public static void CreateIndicesSeedLookups(AgentContext context)
+        private static void AlterSchema(AgentContext context)
         {
             context.Database.ExecuteSqlCommand
-            ("CREATE INDEX IX_Agents_CertificateNumber  ON Agents (CertificateNumber);" + Environment.NewLine +
-             "CREATE INDEX IX_Agents_FirstName          ON Agents (FirstName);" + Environment.NewLine +                
-             "CREATE INDEX IX_Agents_LastName           ON Agents (LastName);" +
-             "CREATE INDEX IX_Territories_KLADRCode     ON Territories (KLADRCode);");
+            (
+             "ALTER TABLE dbo.Agents DROP CONSTRAINT [PK_dbo.Agents];" + Environment.NewLine +
+             "ALTER TABLE dbo.Agents DROP COLUMN Id;" + Environment.NewLine +
+             "ALTER TABLE dbo.Agents ADD Id INT IDENTITY(1000000,1) NOT NULL;" + Environment.NewLine +
+             "ALTER TABLE dbo.Agents ADD CONSTRAINT [PK_dbo.Agents]" + Environment.NewLine +
+             "PRIMARY KEY CLUSTERED ([Id] ASC);"
+             );            
+        }
+
+        private static void CreateIndices(AgentContext context)
+        {
+            context.Database.ExecuteSqlCommand
+            (
+             "CREATE INDEX IX_Agents_CertificateNumber  ON Agents (CertificateNumber);" + Environment.NewLine +
+             "CREATE INDEX IX_Agents_FirstName          ON Agents (FirstName);" + Environment.NewLine +
+             "CREATE INDEX IX_Agents_LastName           ON Agents (LastName);" + Environment.NewLine +
+             "CREATE INDEX IX_Territories_KLADRCode     ON Territories (KLADRCode);"
+             );
+        }
+
+        public static void CreateIndicesSeedLookups(AgentContext context)
+        {
+            AlterSchema(context);
+            CreateIndices(context);
 
             context.Statuses.Add(new Status { Id = 1, Name = "Не действует" });
             context.Statuses.Add(new Status { Id = 10, Name = "Действует" });

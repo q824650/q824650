@@ -13,6 +13,7 @@ namespace AgentRegisterOpenPart.Web.DataAccessLayer
         protected override void Seed(AgentContext context)
         {
             InitDatabase.CreateIndicesSeedLookups(context);
+            context.SaveChanges();
         }
     }
 }
