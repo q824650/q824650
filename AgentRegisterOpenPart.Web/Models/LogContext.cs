@@ -19,25 +19,40 @@ namespace AgentRegisterOpenPart.Web.Models
 		public DbSet<LogItem> Logs { get; set; }
 
 
+        public static int LogInformation(string information, string source, string parameters)
+        {
+            return WriteToLog(new LogItem()
+            {
+                Date = DateTime.Now,
+                Source = source,
+                Parameters = parameters,
+                Type = LogItemType.Info,
+                Text = information,
+            });
+        }
 
-		public static int LogException(Exception exception, string source, string parameters)
-		{
-			using (LogContext db = new LogContext())
-			{
-				LogItem logItem = new LogItem()
-				{
-					Date = DateTime.Now,
-					Source = source,
-					Parameters = parameters,
-					Type = LogItemType.Error,
-					Text = ExceptionTextFormatter.FormatToString(exception),
-				};
 
-				db.Logs.Add(logItem);
-				db.SaveChanges();
+        public static int LogException(Exception exception, string source, string parameters)
+        {
+            return WriteToLog(new LogItem()
+            {
+                Date = DateTime.Now,
+                Source = source,
+                Parameters = parameters,
+                Type = LogItemType.Error,
+                Text = ExceptionTextFormatter.FormatToString(exception),
+            });
+        }
 
-				return logItem.Id;
-			}
-		}
+        private static int WriteToLog(LogItem logItem)
+        {
+            using (LogContext db = new LogContext())
+            {
+                db.Logs.Add(logItem);
+                db.SaveChanges();
+
+                return logItem.Id;
+            }
+        }
 	}
 }

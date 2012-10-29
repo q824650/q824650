@@ -16,16 +16,20 @@ namespace AgentRegisterOpenPart.Web.Controllers
 		[AcceptVerbs(HttpVerbs.Get)]
 		public FileResult Image(string id)
 		{
-			CaptchaImage captchaImage = CaptchaImage.GetCachedCaptcha(id);
+			CaptchaImage captchaImage = CaptchaImageCache.GetCachedCaptcha(id);
 			using (MemoryStream stream = new MemoryStream())
 			{
-				if (captchaImage != null)
-				{
-					using (Bitmap bitmap = captchaImage.RenderImage())
-					{
-						bitmap.Save(stream, ImageFormat.Png);
-					}
-				}
+                if (captchaImage != null)
+                {
+                    using (Bitmap bitmap = captchaImage.RenderImage())
+                    {
+                        bitmap.Save(stream, ImageFormat.Png);
+                    }
+                }
+                else
+                {
+                    LogContext.LogInformation("Iamge is not found in cache (CaptchaController method Image)", "CaptchaController", "captchaImage.Id = " + id);
+                }
 				return File(stream.ToArray(), "image/png");
 			}
 		}

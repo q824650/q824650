@@ -30,23 +30,36 @@ namespace AgentRegisterOpenPart.Web.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {            
             //Agents
-            //modelBuilder.Entity<Agent>().Property<DateTime>(a => a.DateCertificateExpires).IsOptional();
+            modelBuilder.Entity<Agent>().HasKey<int>(a => a.Id);
             modelBuilder.Entity<Agent>()
-            .HasOptional<Territory>(a => a.TerritoryWorksAt)
-            .WithMany()
-            .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
+                .Property(a => a.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.AgencyAgreementNumber).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.FirstName).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.MiddleName).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.LastName).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.CertificateNumber).IsRequired();            
+            modelBuilder.Entity<Agent>().Property<DateTime>(a => a.DateCertificateExpires).IsRequired();
+            modelBuilder.Entity<Agent>().Property<int>(a => a.InsuranceCompanyWorksInId).IsRequired();            
+            modelBuilder.Entity<Agent>()
+                .HasRequired<Territory>(a => a.TerritoryWorksAt)
+                .WithMany()
+                .HasForeignKey<string>(a=>a.TerritoryWorksAtKLADRCode);
+            modelBuilder.Entity<Agent>().Property<int>(a => a.StatusID).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.OrganizationHandedCertificate).IsRequired();
+            modelBuilder.Entity<Agent>().Property(a => a.ProductsWorksWith).IsRequired();
 
             //Territory
             //has manually entered key values.
             modelBuilder.Entity<Territory>().HasKey<string>(t=>t.KLADRCode);
             modelBuilder.Entity<Territory>()
-            .Property(t => t.KLADRCode)            
-            .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .Property(t => t.KLADRCode)            
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             //Status
             //has manually entered key values.
             modelBuilder.Entity<Status>()
-            .Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
         }
 	}

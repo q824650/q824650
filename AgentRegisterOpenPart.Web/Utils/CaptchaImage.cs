@@ -118,55 +118,6 @@ namespace AgentRegisterOpenPart.Web.Utils
 		#region Static
 
 		/// <summary>
-		/// Generates new captcha image and caches it
-		/// </summary>
-		/// <returns>CaptchaImage</returns>
-		public static CaptchaImage GenerateCaptchaImage()
-		{
-			CaptchaImage captchaImage = new CaptchaImage();
-
-			HttpRuntime.Cache.Add(
-				captchaImage.UniqueId,
-				captchaImage,
-				null,
-				DateTime.Now.AddSeconds(CaptchaImage.CacheTimeOut),
-				Cache.NoSlidingExpiration,
-				CacheItemPriority.NotRemovable,
-				null);
-
-			return captchaImage;
-		}
-
-		/// <summary>
-		/// Gets the cached captcha and then removes it from cache
-		/// </summary>
-		/// <param name="id">Captcha Id</param>
-		/// <returns>CaptchaImage</returns>
-		public static CaptchaImage GetAndRemoveCachedCaptcha(string id)
-		{
-			CaptchaImage image = GetCachedCaptcha(id);
-			if (image != null)
-			{
-				HttpRuntime.Cache.Remove(id);
-			}
-			return image;
-		}
-
-		/// <summary>
-		/// Gets the cached captcha
-		/// </summary>
-		/// <param name="id">Captcha Id</param>
-		/// <returns>CaptchaImage</returns>
-		public static CaptchaImage GetCachedCaptcha(string id)
-		{
-			if (!String.IsNullOrEmpty(id))
-			{
-				return (CaptchaImage)HttpRuntime.Cache.Get(id);
-			}
-			return null;
-		}
-
-		/// <summary>
 		/// 
 		/// </summary>
 		private static readonly string[] RandomFontFamily = { "arial", "arial black", "comic sans ms", "courier new", "estrangelo edessa", "franklin gothic medium", "georgia", "lucida console", "lucida sans unicode", "mangal", "microsoft sans serif", "palatino linotype", "sylfaen", "tahoma", "times new roman", "trebuchet ms", "verdana" };
@@ -279,11 +230,11 @@ namespace AgentRegisterOpenPart.Web.Utils
 		{
 			FontWarp = FontWarpFactor.Medium;
 			BackgroundNoise = BackgroundNoiseLevel.Medium;
-			LineNoise = LineNoiseLevel.High;
-			TextLength = 4;
-			//TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789"; // ENG
-            TextChars = "АБВГДЕЖИКЛМНПРСТУФХЦЧШЬЭЮЯ1245679";
-			CacheTimeOut = 21600D; // 6 hours
+			LineNoise = LineNoiseLevel.Medium;
+			TextLength = 6;
+			TextChars = "ABCDEFGHJKLMNPQRTUVXYZ2346789"; // ENG
+            //TextChars = "АБВГДЕЖИКЛМНПРСТУФХЦЧШЬЭЮЯ1245679"; // RUS
+            CacheTimeOut = 21600D; // 6 hours
 		}
 
 		/// <summary>
@@ -397,7 +348,7 @@ namespace AgentRegisterOpenPart.Web.Utils
 					fsize = Convert.ToInt32(_height * 0.8);
 					break;
 				case FontWarpFactor.Medium:
-					fsize = Convert.ToInt32(_height * 0.87);
+					fsize = Convert.ToInt32(_height * 0.83);
 					break;
 				case FontWarpFactor.High:
 					fsize = Convert.ToInt32(_height * 0.9);
@@ -426,7 +377,7 @@ namespace AgentRegisterOpenPart.Web.Utils
 				gr.Clear(Color.White);
 
 				int charOffset = 0;
-				double charWidth = _width / TextLength;
+				double charWidth = _width / TextLength - 3; //-3 was added to prevent last char crawl out of the border
 				Rectangle rectChar;
 
 				foreach (char c in Text)
