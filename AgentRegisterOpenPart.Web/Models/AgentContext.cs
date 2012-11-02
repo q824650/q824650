@@ -10,7 +10,12 @@ using AgentRegisterOpenPart.Web.DataAccessLayer;
 namespace AgentRegisterOpenPart.Web.Models
 {
 	public class AgentContext : DbContext
-	{		
+	{
+        public DbSet<Agent> Agents { get; set; }
+        public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
+        public DbSet<Territory> Territories { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+
 		static AgentContext()
         {
             if (ConfigurationHelper.DatabaseCreationMode == "DropCreateAgentsControllerWithInitialData")            
@@ -19,13 +24,24 @@ namespace AgentRegisterOpenPart.Web.Models
                 Database.SetInitializer<AgentContext>(new CreateAgentsControllerWithInitialData());
         }
 
-		public AgentContext()			
+		protected AgentContext()
+            :base()		
 		{
 		}
-		public DbSet<Agent> Agents { get; set; }
-        public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
-        public DbSet<Territory> Territories { get; set; }
-        public DbSet<Status> Statuses { get; set; }
+
+        protected AgentContext(string connectionString)
+            : base(connectionString)
+        {
+        }
+
+        public static AgentContext getInstance()
+        {
+            string connectionString = ConfigurationHelper.getConnectionString("AgentContext");
+            if (string.IsNullOrEmpty(connectionString))
+                return new AgentContext();
+            else
+                return new AgentContext(connectionString);
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {            
@@ -60,7 +76,6 @@ namespace AgentRegisterOpenPart.Web.Models
             //has manually entered key values.
             modelBuilder.Entity<Status>()
                 .Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
         }
 	}
 }

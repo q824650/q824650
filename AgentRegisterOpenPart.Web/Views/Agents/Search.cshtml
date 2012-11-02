@@ -145,7 +145,7 @@
             <table style="width: 100%">
                 <tr>
                     <td>
-                        <p style="text-align: justify;">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер сертификата (свидетельства).</p>
+                        <p style="text-align: justify;">Для получения информации о страховом агенте, введите, пожалуйста, его имя или номер свидетельства.</p>
                     </td>
                 </tr>
                 <tr>
@@ -204,13 +204,13 @@
 
                         <div class="agent-details" style="display: none">
                             <div>
-                                Дата истечения срока действия сертификата: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateCertificateExpires)
+                                Дата истечения срока действия свидетельства: @AgentRegisterOpenPart.Web.Utils.DateTimeHelper.ToDateString(agent.DateCertificateExpires)
                             </div>
                             <div>
                                 Статус: @agent.Status.Name
                             </div>
                             <div>
-                                Номер Агентского Договора: @agent.AgencyAgreementNumber
+                                Номер агентского договора: @agent.AgencyAgreementNumber
                             </div>
                             <div>
                                 Работает на территории: @agent.TerritoryWorksAt.Name

@@ -9,6 +9,7 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
 {
     public class AgentSearch
     {
+        static char[] Numbers = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         /// <summary>
         /// 1. Splits the search string in words.
         /// 2. Implements the following search logic:
@@ -24,7 +25,7 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
         /// </summary>
         public static List<Agent> GetAgents(string searchText)
         {
-            using (AgentContext db = new AgentContext())
+            using (AgentContext db = AgentContext.getInstance())
             {
 				IQueryable<Agent> agentsResult = db.Agents
 					.Include("InsuranceCompanyWorksIn")
@@ -32,7 +33,7 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
 					.Include("Status");
 
                 searchText = searchText.Trim();
-                if (HasDigits(searchText))
+                if (searchText.ToCharArray().Any(x=>Numbers.Contains(x)))
                 {
                     if (HasNotAllowedChars(searchText))
                     {
@@ -41,9 +42,14 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
                     }
                     else
                     {
+                        char firstNumber = searchText.ToCharArray().Where(x=>Numbers.Contains(x)).First();
+                        int firstNumberIndex = searchText.IndexOf(firstNumber, 0);
+                        char lastNumber = searchText.ToCharArray().Where(x=>Numbers.Contains(x)).Last();
+                        int lastNumberIndex = searchText.LastIndexOf(lastNumber);
+                        
                         // Ищем сертификат по числовой подстроке
                         agentsResult = agentsResult.Where(a =>
-                            a.CertificateNumber.StartsWith(searchText));                            
+                            a.CertificateNumber.StartsWith(searchText.Substring(firstNumberIndex, lastNumberIndex-firstNumberIndex+1)));                            
                     }
                 }
                 else
@@ -89,24 +95,10 @@ namespace AgentRegisterOpenPart.Web.BusinessLayer
             }
         }
 
-
-        private static bool HasDigits(string text)
-        {
-            foreach (char c in text)
-            {
-                if (c >= '0' && c <= '9')
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private static bool HasNotAllowedChars(string text)
         {
             // TODO: 
             return false;
         }
-
     }
 }

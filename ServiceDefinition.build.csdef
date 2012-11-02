@@ -26,8 +26,13 @@
     <Imports>
       <Import moduleName="RemoteAccess" />
       <Import moduleName="RemoteForwarder" />
+      <Import moduleName="Diagnostics" />
     </Imports>
     <LocalResources></LocalResources>
-    <ConfigurationSettings></ConfigurationSettings>
+    <ConfigurationSettings>
+      <Setting name="AgentContext" />
+      <Setting name="LogContext" />
+      <Setting name="MaxAgentsSearchResultSetLength" />
+    </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>

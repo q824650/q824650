@@ -8,16 +8,26 @@ using AgentRegisterOpenPart.Web.Utils;
 namespace AgentRegisterOpenPart.Web.Models
 {
 	public class LogContext : DbContext
-	{
-		// System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<MVC4Sample.Web.Models.PersonContext>());
+	{		
+        public DbSet<LogItem> Logs { get; set; }
 
-		public LogContext()
-//		//	: base("name=LogContext")
+		protected LogContext() :base()
 		{
 		}
 
-		public DbSet<LogItem> Logs { get; set; }
+        protected LogContext(string connectionString)
+                    : base(connectionString)
+        {
+        }
 
+        public static LogContext getInstance()
+        {
+            string connectionString = ConfigurationHelper.getConnectionString("LogContext");
+            if (string.IsNullOrEmpty(connectionString))
+                return new LogContext();
+            else
+                return new LogContext(connectionString);
+        }
 
         public static int LogInformation(string information, string source, string parameters)
         {
@@ -30,7 +40,6 @@ namespace AgentRegisterOpenPart.Web.Models
                 Text = information,
             });
         }
-
 
         public static int LogException(Exception exception, string source, string parameters)
         {
@@ -46,7 +55,7 @@ namespace AgentRegisterOpenPart.Web.Models
 
         private static int WriteToLog(LogItem logItem)
         {
-            using (LogContext db = new LogContext())
+            using (LogContext db = LogContext.getInstance())
             {
                 db.Logs.Add(logItem);
                 db.SaveChanges();

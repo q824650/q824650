@@ -31,7 +31,7 @@ namespace AgentRegisterOpenPart.Web
 
         private static void ForceAgentContextDatabaseCreation()
         {            
-            using (var context = new AgentContext())
+            using (var context = AgentContext.getInstance())
             {
                 try
                 {

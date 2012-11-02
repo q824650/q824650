@@ -5,12 +5,16 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="q824650" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHf3Om/kETSLSRFozVS939YwDQYJKoZIhvcNAQEBBQAEggEAfEyUKEH4Rsc3eus3o6RXIyXauDJEYKtdDSxVrWeX/+6cSnJ0rPwUdYWhNKWcnQKUdrzS0NAu2v3ajdF+AWEkis/QqqiYCXYcodaii8f0CsRPEavt7+JJXII5CH7lBBuT14H3va1tg9cWowNIGtk3LXH/TGXE2x+tASRAUYV+gu7VwUKYdzO8NDeEaiPCelzFfgotvV2wk1Mkfbh7VMljkWhMUe9fT7+pM5oh92F4eFOR3r33QiqAd3LqDf21iYocIZt6MNes3FyVupT8A7Gi5oylVu9WDyehGoKN535ove1pdToQJMJnR1lW+ny5sbG5VrQR9cuyNQsDOJY/LKYm0jAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECOkg9/fT0jA8gBDKvAJZttykLhCtDW/az35c" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEE+PvMUGJDCdT0MEJ1yBeRcwDQYJKoZIhvcNAQEBBQAEggEAcDcq9b/57TpdbZ0BgNAz1AB6fEXhMRqUERPkxTXsOklQciIfa/Y5WiVpj1UQ87xjUCoO1BSphMMkDz0+XrDgP7swUNRJt8bVuxnt+z8WqiAkOYajAAC/9pgYV2PCrLMt/8q2o5kA02FiCdHCpCEmZA1gkv+5VZRPXYNyIMBEr7uXezSyoKRBHSeZGYvO9P/TWK/gWdmisS133nYqSkCJC41a098rLltxCla6lYLT2n1k7lsBnBGMt2etSeEM8gid0gr55ur+/tTnlcROmV+u3xqvQLe0rGzE/lJGQwzTnW2pyMUvSUjk2SanQiqWsSiZenBAjRjl/Rkz4SAaoJdMWDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECA0NkctmyGJxgBCccl1iYtL/3Pzpsa1l9icB" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2013-10-18T23:59:59.0000000+04:00" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+      <Setting name="AgentContext" value="Server=tcp:fwjq0b5wrt.database.windows.net,1433;Database=AgentContext;User ID=q824650@fwjq0b5wrt;Password=Welcome1;Trusted_Connection=False;Encrypt=True;Connection Timeout=60;" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagemsdnol;AccountKey=CtTLaaZCk10TVcA4UF0TZqdOHaxPfXPiw7GH80dSjvQFEWzgzd/zV4bsrdanbc3uGPDmh3pR61q4yjFfdgN+Rw==" />
+      <Setting name="LogContext" value="Server=tcp:fwjq0b5wrt.database.windows.net,1433;Database=LogContext;User ID=q824650@fwjq0b5wrt;Password=Welcome1;Trusted_Connection=False;Encrypt=True;Connection Timeout=60;" />
+      <Setting name="MaxAgentsSearchResultSetLength" value="30" />
     </ConfigurationSettings>
     <Certificates>
-      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="A4DF35C0BECE28F1B26B254D961FE1EF9B4F9E30" thumbprintAlgorithm="sha1" />
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="6EB8EBE3495E3CB6C4ADFBCC394A1D0C7DC6F02F" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 </ServiceConfiguration>

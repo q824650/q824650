@@ -34,7 +34,7 @@ namespace AgentRegisterOpenPart.Web.Controllers
             // If image exists in cache (wasn't removed during timeout)
             if (image == null)
             {
-                LogContext.LogInformation("Iamge is not found in cache (AgentsController method Search[HttpPost])", "AgentsController", "captchaImage.Id = " + viewModel.CaptchaId);
+                LogContext.LogInformation("Image is not found in cache (AgentsController method Search[HttpPost])", "AgentsController", "captchaImage.Id = " + viewModel.CaptchaId);
                 // Redirect to search again
                 return RedirectToAction("Search");
             }
